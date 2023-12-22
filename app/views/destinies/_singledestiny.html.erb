@@ -1,0 +1,26 @@
+<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+  <div class="col">
+     <div class="card mb-4 rounded-3 shadow-sm">
+       <div class="card-header py-3">
+         <h4 class="my-0 fw-normal"><%= destiny.travel.name %></h4>
+       </div>
+       <div class="card-body">
+         <h1 class="card-title pricing-card-title"><%= destiny.country.name %></h1>
+         <ul class="list-unstyled mt-3 mb-4">
+           <li>Fecha salida: <%= destiny.start_date.strftime("%d-%m-%Y") %></li>
+           <li>Fecha regreso: <%= destiny.fishis_date.strftime("%d-%m-%Y") %></li>
+         </ul>
+         <div class="btn-group gap-2">
+          <% if current_user %>
+            <%= link_to "Editar destino", edit_destiny_path(@destiny), :class =>"btn btn-sm btn-warning rounded-pill px-2" %>
+            <%= button_to "Eliminar destino", @destiny, method: :delete, :class =>"btn btn-sm btn-danger rounded-pill px-2" %>
+            <%= link_to "Volver a lista de destinos", destinies_path, :class =>"btn btn-sm btn-info rounded-pill px-2" %>
+          <% else %>
+            <%= link_to "Volver a lista de destinos", destinies , :class =>"btn btn-sm btn-info rounded-pill px-2" %>
+          <% end %>
+        </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</main>

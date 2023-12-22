@@ -1,0 +1,159 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="col">
+      <div class="card shadow-sm">
+        <div class="card-body">
+        <h3>Datos del asegurado:</h3>
+          <p class="card-text">Nombre Asegurado: <b><%= article.user.name %> <%= article.user.s_name %> <%= article.user.lastname %> <%= article.user.s_lastname %></b></p>
+          <p class="card-text">Tipo de sangre: <b><%= article.user.bloodtype.name %></b></p>
+          <h3>Datos del viaje:</h3>
+          <p class="card-text">Nombre del viaje: <b><%= article.travel.name %></b></p>
+          <p class="card-text">Fecha de salida: <b><%= article.travel.start_date.strftime("%d/%m/%Y") %></b></p>
+          <p class="card-text">Fecha de retorno: <b><%= article.travel.finish_date.strftime("%d/%m/%Y") %></b></p>
+          <div class="d-flexalign-items-center">
+          <h3>Destinos:</h3>
+            <p class="card-text">
+            <% @article.travel.destinies.each do |destiny| %>
+              <li><b>Pais:</b> <%= destiny.country.name %>, <b>Fecha de llegada:</b> <%= destiny.start_date.strftime("%d/%m/%Y") %>, <b>Fecha de salida:</b> <%= destiny.fishis_date.strftime("%d/%m/%Y") %></li>
+            <% end %>
+            </p>
+          </div>
+          <div class="d-flexalign-items-left table-responsive">
+          <h3>Padecimientos:</h3>
+
+          <table class="table table-primary mt-2 w-75 table-responsive-sm">
+            <thead>
+              <tr>
+                <th scope="col">ICD-10</th>
+                <th scope="col">Enfermedad</th>
+                <th scope="col">Especificaciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @article.articles_diseases.each do |art_dis| %>
+                <tr class="table-light">
+                  <td><%= art_dis.disease.code %></td>
+                  <td><%= art_dis.disease.name %></td>
+                 <td><%= art_dis.note %></td>
+                </tr>
+                <% end %>
+            </tbody>
+          </table> 
+
+          <div class="d-flexalign-items-center table-responsive">
+          <h3>Medicamentos:</h3>
+
+          <table class="table table-primary mt-2 w-75 table-responsive-sm">
+            <thead>
+              <tr>
+                <th scope="col">Nombre comercial</th>
+                <th scope="col">Compuesto</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Unidad</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <% @article.articles_medicaments.each do |art_med| %>
+                <tr class="table-light">
+                  <td><%= art_med.medicament.name %></td>
+                  <td><%= art_med.medicament.compound %></td>
+                  <td><%= art_med.quantity %></td>
+                  <td><%= art_med.medicament.unit.name %></td>
+
+                </tr>
+                <% end %>
+          </table>
+
+                <div class="d-flexalign-items-center">
+                  <h3>Contactos:</h3>
+        
+                  <table class="table table-primary mt-2 w-75 table-responsive-sm">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">País</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @article.articles_contacts.each do |art_con| %>
+                        <tr class="table-light">
+                          <td><%= art_con.contact.name %></td>
+                          <td><%= art_con.contact.lastname %></td>
+                          <td><%= art_con.contact.email %></td>
+                         <td><%= art_con.contact.phone %></td>
+                         <td><%= art_con.contact.country.name %></td>
+                        </tr>
+                        <% end %>
+            </tbody>
+          </table> 
+
+          <div class="d-flexalign-items-left mt-2 mb-4">
+            <button type="button" class="btn btn-sm btn-success rounded-pill px-2" data-bs-toggle="modal" data-bs-target="#myModal">
+             Ver QR imprimible
+            </button>
+            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Imprimir QR</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                  </div>
+                  
+                  <div id="imp1" class="modal-body">
+                    <table>
+                      <thead>
+                        <tr>
+                          <td rowspan="2"><%= image_tag(url_for(article.qrcode)) %></td>
+                          <td><p>En caso de pérdida de conciencia, escanee este código QR
+
+                          Este código QR contiene información importante sobre mi salud y tratamiento.
+
+                          Por favor, trátelo con discreción.</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                        </tr>
+                      </thead>
+                      </table>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary rounded-pill px-2" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" onclick="javascript:imprim1(imp1);" class="btn btn-sm btn-primary rounded-pill px-2" id="print-modal">Imprimir</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <script>
+              $(document).ready(function() {
+                $('#myModal').modal('show');
+              });
+              </script>
+            <script>
+              function imprim1(imp1){
+              var printContents = document.getElementById('imp1').innerHTML;
+                      w = window.open();
+                      w.document.write(printContents);
+                      w.document.close(); // necessary for IE >= 10
+                      w.focus(); // necessary for IE >= 10
+                  w.print();
+                      return true;}
+              </script>
+          </div>
+          
+            <div class="btn-group gap-2">
+              <% if current_user %>
+                <%= link_to "Editar articulo", edit_article_path(@article), :class =>"btn btn-sm btn-warning rounded-pill px-2" %>
+                <%= button_to "Eliminar articulo", @article, method: :delete, :class =>"btn btn-sm btn-danger rounded-pill px-2" %>
+                <%= link_to "Volver a lista de articulos", articles_path, :class =>"btn btn-sm btn-info rounded-pill px-2" %>
+              <% end %>
+            </div>
+      </div>
+    </div>
+    </div>
+            </div>
+          </div>
+</main>

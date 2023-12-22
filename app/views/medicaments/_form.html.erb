@@ -1,0 +1,35 @@
+<div class="container px-5 my-5">
+<%= form_with(model: medicament) do |form| %>
+  <% if medicament.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(medicament.errors.count, "error") %> prohibited this medicament from being saved:</h2>
+
+      <ul>
+        <% medicament.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <h1>Nuevo medicamento</h1><br>
+  <form id="contactForm" >
+      <div class="form-floating mb-3">
+          <%= form.text_field :name, autofocus: true, :class => "form-control w-50", id: "name", placeholder: "Nombre del medicamento" %>
+          <%= form.label :name, "Nombre del medicamento" %>
+    </div>
+      <div class="form-floating mb-3">
+          <%= form.text_field :compound, autofocus: true, :class => "form-control w-50", id: "compound", placeholder: "Compuesto" %>
+          <%= form.label :compound, "Compuesto" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= form.collection_select :unit_id, @units, :id, :name, {:include_blank => 'Unidad de medida'}, {:class => 'form-select w-50'} %>
+      </div>
+      <div class="d-grid">
+        <%= form.submit "Agregar", :class => "btn btn-primary w-25 px-2 py-2 rounded-pill mb-2" %>
+        <%= link_to "Regresar", medicaments_path, :class => "btn btn-info w-25 px-2 py-2 rounded-pill mb-2" %>
+      </div>
+  </form>
+</div>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<% end %>

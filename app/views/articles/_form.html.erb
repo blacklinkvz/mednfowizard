@@ -1,0 +1,31 @@
+<div class="container px-5 my-5">
+  <%= form_with(model: article) do |form| %>
+  <% if article.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+        <% article.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+    <h1>Crear articulo</h1>
+    <form id="contactForm">
+      <div class="form-floating mb-3">
+        <%= form.text_field :title, autofocus: true, :class => "form-control w-50", id: "title", placeholder: "Título" %>
+        <%= form.label :title, "Título" %>     
+      </div>
+      <div class="form-floating mb-3">
+        <%= form.collection_select :travel_id, @travel, :id, :name, {:include_blank => 'Viaje'}, {:class => 'form-select w-50'} %>
+      </div>
+        <div class="d-grid">
+          <%= form.submit "Registrar", :class => "btn btn-primary btn-sm w-25 py-2 rounded-pill mb-2" %>
+          <%= link_to "Volver", articles_path, :class => "btn btn-info btn-sm w-25 py-2 rounded-pill mb-2" %>
+        </div>
+    </form>
+  </div>
+  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  <% end %>

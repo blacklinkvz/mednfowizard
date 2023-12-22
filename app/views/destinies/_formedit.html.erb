@@ -1,0 +1,38 @@
+<div class="container px-5 my-5">
+<%= form_with(model: destiny) do |form| %>
+  <% if destiny.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(destiny.errors.count, "error") %> prohibited this destiny from being saved:</h2>
+
+      <ul>
+        <% destiny.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h1>Editar destino</h1>
+  <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+      <div class="form-floating mb-3">
+        <%= form.date_field :start_date, :class => "form-control w-50", id: "fecha_salida", placeholder: "Fecha de salida"  %>
+        <%= form.label :fecha_salida,"Fecha de salida" ,style: "display: block" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= form.date_field :finish_date, :class => "form-control w-50", id: "fecha_regreso", placeholder: "Fecha de regreso"  %>
+        <%= form.label :fecha_regreso,"Fecha de regreso" ,style: "display: block" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= form.collection_select :country_id, Country.all, :id, :name, {:include_blank => 'País'}, {:class => 'form-select w-50'} %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= form.collection_select :destiny_id, Travel.all, :id, :name, {:include_blank => 'Agregar al viaje'}, {:class => 'form-select w-50'} %>
+      </div>
+      <div class="d-grid">
+        <%= form.submit "Registrar", :class => "btn btn-primary btn-sm w-25 py-2 rounded-pill mb-2" %>
+        <%= link_to "Volver", destinies_path, :class => "btn btn-info btn-sm w-25 py-2 rounded-pill mb-2" %>
+      </div>
+  </form>
+</div>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<% end %>

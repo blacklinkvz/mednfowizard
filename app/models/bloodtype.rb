@@ -1,0 +1,2 @@
+class Bloodtype < ApplicationRecord
+end

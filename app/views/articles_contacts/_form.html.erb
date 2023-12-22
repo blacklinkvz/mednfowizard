@@ -1,0 +1,34 @@
+<div class="container px-5 my-5">
+  <%= form_with(model: articles_contact) do |form| %>
+  <% if articles_contact.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(articles_contact.errors.count, "error") %> prohibited this articles_contact from being saved:</h2>
+
+      <ul>
+        <% articles_contact.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h1>Agregar contacto al articulo</h1>
+  <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+      <div class="form-floating mb-3">
+        <%= form.collection_select :article_id, @articles.where(user_id: current_user.id), :id, :title, {:include_blank => 'Selecciona el artículo'}, {:class => 'form-select form-select-sm w-50'} %>   
+      </div>
+      <div class="form-floating mb-3">
+        <%= form.collection_select :contact_id, @contacts, :id, -> (contact) { "#{contact.name} #{contact.lastname} (#{contact.country.name})" }, {:include_blank => 'Selecciona un contacto'}, {:class => 'form-select form-select-sm w-50'} %>
+       
+      </div>
+      <div class="form-floating mb-3">
+
+      </div>
+      <div class="d-grid">
+        <%= form.submit "Asignar", :class => "btn btn-primary w-25 py-2 rounded-pill mb-2" %>
+        <%= link_to "Volver", contacts_path, :class => "btn btn-info w-25 py-2 rounded-pill mb-2" %>
+      </div>
+  </form>
+</div>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<% end %>

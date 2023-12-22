@@ -1,0 +1,19 @@
+</main>
+        <tr class="table-light">  
+          <td></td>      
+          <td><%= article.title %></td>
+          <td><%= article.travel.name %></td>
+          <td><%= article.created_at.strftime("%d/%m/%Y") %></td>      
+          <td></td>
+          <td>
+            <div class="btn-group">
+            <%= link_to raw("<i class=\"bi bi-book\"></i>"), url_for(controller: "articles", action: "show", id: article.id, key: article.key), :class => "btn btn-sm btn-success rounded-pill px-2 mr-1" %>
+             <%= link_to raw("<i class=\"bi bi-pencil-square\"></i>"),  edit_article_path(article), :class => "btn btn-sm btn-primary rounded-pill mr-1" %>
+             <%= button_to raw("<i class=\"bi bi-trash\"></i>"), article, method: :delete, :class => "btn btn-sm btn-danger rounded-pill" %>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+ </div>
+</main>

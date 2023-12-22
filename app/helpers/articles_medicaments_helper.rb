@@ -1,0 +1,2 @@
+module ArticlesMedicamentsHelper
+end

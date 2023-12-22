@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://portal.azure.com/
+HostUrl=https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem

@@ -1,0 +1,35 @@
+<div class="container px-5 my-5">
+  <%= form_with(model: travel) do |form| %>
+  <% if travel.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(travel.errors.count, "error") %> prohibited this travel from being saved:</h2>
+
+      <ul>
+        <% travel.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h1>Nuevo viaje</h1>
+  <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+      <div class="form-floating mb-3">
+          <%= form.text_field :name, autofocus: true, :class => "form-control w-50", id: "Nombre_viaje", placeholder: "Nombre del viaje" %>
+          <%= form.label :floatingName, "Nombre del viaje" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= form.date_field :start_date, :class => "form-control w-50", id: "fecha_salida", placeholder: "Fecha de salida"  %>
+        <%= form.label :fecha_salida,"Fecha de salida" ,style: "display: block" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= form.date_field :finish_date, :class => "form-control w-50", id: "fecha_regreso", placeholder: "Fecha de regreso"  %>
+        <%= form.label :fecha_regreso,"Fecha de regreso" ,style: "display: block" %>
+      </div>
+      <div class="d-grid">
+        <%= form.submit "Registrar", :class => "btn btn-primary btn-sm w-25 py-2 rounded-pill mb-2" %>
+        <%= link_to "Volver", travels_path, :class => "btn btn-info btn-sm w-25 py-2 rounded-pill mb-2" %>
+      </div>
+  </form>
+</div>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<% end %>

@@ -1,0 +1,31 @@
+<div id="<%= dom_id articles_contact %>">
+  <p>
+    <strong>Article:</strong>
+    <%= articles_contact.article_id %>
+  </p>
+
+  <p>
+    <strong>Contact:</strong>
+    <%= articles_contact.contact_id %>
+  </p>
+
+</div>
+
+
+
+<tr class="table-light">
+         
+  <td><%= articles_contact.contact.name %></td>
+  <td><%= articles_contact.contact.lastname %></td>
+  <td><%= articles_contact.contact.country.name %></td>
+  <td><%= articles_contact.article.title %></td>
+  <td>
+    <div class="btn-group">
+     <%= link_to raw("<i class=\"bi bi-pencil-square\"></i>"),  edit_articles_contact_path(articles_contact), :class => "btn btn-sm btn-primary rounded-pill mr-1" %>
+     <%= button_to raw("<i class=\"bi bi-trash\"></i>"), articles_contact, method: :delete, :class => "btn btn-sm btn-danger rounded-pill" %>
+    </div>
+  </td>
+</tr>
+</tbody>
+</div>
+</main>

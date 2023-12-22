@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_date: 2023-11-12
+  fishis_date: 2023-11-12
+  country: one
+  travel: one
+
+two:
+  start_date: 2023-11-12
+  fishis_date: 2023-11-12
+  country: two
+  travel: two

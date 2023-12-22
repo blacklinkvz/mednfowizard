@@ -1,0 +1,23 @@
+<div class="container py-3">
+  <main>
+    <h1>Contactos</h1><br>
+    <%= link_to "Nuevo contacto", new_contact_path, :class => "btn btn-sm btn-primary rounded-pill px-2" %>
+     <table class="table table-primary mt-2">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">País</th>
+          <th scope="col">Email</th>
+          <th scope="col">Telefono</th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+    <% @contacts.sort_by { |contact| contact.country.name }.each do |contact| %>
+  
+        <%= render contact %>
+          <% end %>
+    </div>
+  </footer>
+

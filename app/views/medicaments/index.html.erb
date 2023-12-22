@@ -1,0 +1,22 @@
+
+
+<div class="container py-3">
+<h1>Listado de medicamentos</h1><br>
+  <main>
+    <%= link_to "Agregar medicamento", new_medicament_path, :class => "btn btn-sm btn-primary rounded-pill px-2" %>
+     <table class="table table-primary mt-2">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Compuesto</th>
+          <th scope="col">Unidad</th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+  <% @medicaments.each do |medicament| %>
+    <%= render medicament %>
+          <% end %>
+    </div>
+  </footer>

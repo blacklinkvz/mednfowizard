@@ -1,0 +1,11 @@
+        <tr class="table-light">
+          <th scope="row"><%= destiny.id %></th>
+          <td><%= destiny.country.name %></td>
+          <td><%= destiny.travel.name %></td>
+          <td><%= destiny.start_date.strftime("%d-%m-%Y") %></td>      
+          <td><%= destiny.fishis_date.strftime("%d-%m-%Y") %></td>
+          <td> <%= link_to "Ver detalle", destiny, :class => "w-30 btn btn-sm btn-primary rounded-pill px-2" %></td>
+        </tr>
+      </tbody>
+ </div>
+</main>

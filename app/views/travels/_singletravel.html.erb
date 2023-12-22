@@ -1,0 +1,31 @@
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="col">
+      <div class="card shadow-sm">
+        
+        <div class="card-body">
+          <p class="card-text">Nombre del viaje: <b><%= travel.name %></b></p>
+          <p class="card-text">Fecha salida: <b><%= travel.start_date.strftime("%d/%m/%Y") %></b></p>
+          <p class="card-text">Fecha regreso: <b><%= travel.finish_date.strftime("%d/%m/%Y") %></b></p>
+          <div class="d-flexalign-items-center">
+          <h3>Destinos:</h3>
+            <p class="card-text">
+            <% @destinies.each do |destiny| %>
+              <li><b>Pais:</b> <%= destiny.country.name %>, <b>Fecha de llegada:</b> <%= destiny.start_date.strftime("%d/%m/%Y") %>, <b>Fecha de salida:</b> <%= destiny.fishis_date.strftime("%d/%m/%Y") %></li>
+            <% end %>
+            </p>
+          </div>
+            <div class="btn-group gap-2">
+              <% if current_user %>
+                <%= link_to "Editar", edit_travel_path(@travel), :class =>"btn btn-sm btn-warning rounded-pill px-2" %>
+                <%= button_to "Eliminar", @travel, method: :delete, :class =>"btn btn-sm btn-danger rounded-pill px-2" %>
+                <%= link_to "Volver", travels_path, :class =>"btn btn-sm btn-info rounded-pill px-2" %>
+              <% else %>
+                <%= link_to "Volver", travels_path , :class =>"btn btn-sm btn-info rounded-pill px-2" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</main>

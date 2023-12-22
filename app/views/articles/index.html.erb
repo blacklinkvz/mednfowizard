@@ -1,0 +1,22 @@
+<div class="container py-3">
+  <main>
+  <% if current_user %>
+    <%= link_to "Crear Articulo", new_article_path, :class => "btn btn-sm btn-primary rounded-pill px-2" %>
+  <% end %>
+     <table class="table table-primary mt-2 table-responsive-sm" >
+      <thead>
+        <tr>
+          <th></th>
+          <th scope="col">Titulo del articulo</th>
+          <th scope="col">Viaje</th>
+          <th scope="col">Fecha de creación</th>
+          <th scope="col"></th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @articles.sort_by { |article| article.created_at }.each do |article| %>
+          <%= render article %>
+        <% end %>
+    </div>
+  </footer>

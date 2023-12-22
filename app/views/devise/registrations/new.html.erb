@@ -1,0 +1,63 @@
+<div class="container px-5 my-5">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+      <div class="form-floating mb-3">
+          <%= f.text_field :name, autofocus: true, :class => "form-control w-50", id: "Nombre", placeholder: "Nombre" %>
+          <%= f.label :floatingName, "Nombre" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.text_field :s_name, autofocus: true, :class => "form-control w-50", id: "Segundo_nombre", placeholder: "Segundo nombre" %>
+        <%= f.label :Segundo_nombre, "Segundo nombre" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.text_field :lastname, autofocus: true, :class => "form-control w-50", id: "Apellido_paterno", placeholder: "Apellido paterno" %>
+        <%= f.label :Apellido_paterno, "Apellido paterno" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.text_field :s_lastname, autofocus: true, :class => "form-control w-50", id: "Apellido_materno", placeholder: "Apellido materno" %>
+        <%= f.label :Apellido_materno, "Apellido materno" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.text_field :rut, autofocus: true, :class => "form-control w-50", id: "Rut", placeholder: "Rut" %>
+        <%= f.label :Rut, "Rut" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.text_field :passport, autofocus: true, :class => "form-control w-50", id: "Pasaporte", placeholder: "Pasaporte" %>
+        <%= f.label :Pasaporte, "Pasaporte" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.collection_select :country_id, @countries, :id, :name, {:include_blank => 'País'}, {:class => 'form-select w-50'} %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.collection_select :bloodtype_id, @bloodtypes, :id, :name, {:include_blank => 'Tipo de sangre'}, {:class => 'form-select w-50'} %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.email_field :email, autofocus: true, :class => "form-control w-50", id: "email", placeholder: "email" %>
+        <%= f.label :email, "Email" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.password_field :password, autocomplete: "new-password", :class => "form-control w-50", id: "contraseña", placeholder: "Contraseña" %>
+        <%= f.label :Conseña, "Contraseña (mínimo 6 caracteres)" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", :class => "form-control w-50", id: "Confirmar_contraseña", placeholder: "Confirmar contraseña" %>
+        <%= f.label :Confirmar_contraseña, "Confirmar contraseña" %>
+      </div>
+      <div class="d-none" id="submitSuccessMessage">
+          <div class="text-center mb-3">
+              <div class="fw-bolder">Form submission successful!</div>
+              <p>To activate this form, sign up at</p>
+              <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+          </div>
+      </div>
+      <div class="d-none" id="submitErrorMessage">
+          <div class="text-center text-danger mb-3">Error sending message!</div>
+      </div>
+      <div class="d-grid">
+        <%= f.submit "Registrarse", :class => "btn btn-primary w-25 py-2 rounded-pill" %>
+      </div>
+  </form>
+</div>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<% end %>

@@ -1,0 +1,37 @@
+<%= javascript_include_tag 'disease' %>
+<div class="container px-5 my-5 w-50">
+  <%= form_with(model: articles_disease, id: "contactForm") do |form| %>
+    <% if articles_disease.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(articles_disease.errors.count, "error") %> prohibited this articles_disease from being saved:</h2>
+
+        <ul>
+          <% articles_disease.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <h1>Agregar padecimiento a un artículo</h1><br> 
+  <form id="contactForm">
+    <div class="form-floating mb-3">
+      <%= form.collection_select :article_id, @articles.where(user_id: current_user.id), :id, :title, {:include_blank => 'Selecciona el artículo'}, {:class => 'form-select form-select-sm w-50'} %>   
+    </div>
+
+    <div class="form-floating mb-3">
+      <%= form.collection_select :disease_id, @diseases, :id, :name, {:include_blank => 'Selecciona un padecimiento'}, {:class => 'form-select form-select-sm w-50'} %>
+    </div>
+    <div class="form-floating mb-3">
+      <%= form.text_field :note, :class => "form-control w-50", id: "note", placeholder: "Especificación"  %>
+      <%= form.label :note, "Especificación" ,style: "display: block" %>
+    </div>
+    <div class="d-grid">
+      <%= form.submit "Agregar", :class => "btn btn-primary w-25 rounded-pill mb-2" %>
+    </div>
+      </form>
+      </div>
+      <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <% end %>
+
+

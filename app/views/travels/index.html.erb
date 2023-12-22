@@ -1,0 +1,11 @@
+<div class="container py-3">
+  <main>
+    
+    <%= link_to "Nuevo Viaje", new_travel_path, :class => "btn btn-sm btn-primary rounded-pill px-2" %>
+      <% @travels.each do |travel| %>
+      <p>  
+        <%= render travel %>
+      </p>
+          <% end %>
+    </div>
+  </footer>

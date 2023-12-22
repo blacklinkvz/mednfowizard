@@ -1,0 +1,45 @@
+<div class="container px-5 my-5">
+  <%= form_with(model: contact) do |form| %>
+  <% if contact.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+        <% contact.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+    <h1>Crear contacto</h1>
+      <form id="contactForm">
+        <div class="form-floating mb-3">
+          <%= form.text_field :name, autofocus: true, :class => "form-control w-50", id: "name", placeholder: "Nombre" %>
+          <%= form.label :name, "Nombre" %>
+        </div>
+        <div class="form-floating mb-3">
+          <%= form.text_field :lastname, autofocus: true, :class => "form-control w-50", id: "lastname", placeholder: "Apellido" %>
+          <%= form.label :lastname, "Apellido" %>
+        </div>
+        <div class="form-floating mb-3">
+          <%= form.text_field :email, autofocus: true, :class => "form-control w-50", id: "email", placeholder: "Email" %>
+          <%= form.label :email, "Email" %>
+        </div>
+        <div class="form-floating mb-3">
+          <%= form.number_field :phone, autofocus: true, :class => "form-control w-50", id: "phone", placeholder: "Teléfono" %>
+          <%= form.label :phone, "Teléfono" %>
+        </div>
+        <div class="form-floating mb-3">
+          <%= form.collection_select :country_id, @countries, :id, :name, {:include_blank => 'País'}, {:class => 'form-select w-50'} %>
+        </div>
+        <div class="d-grid">
+            <%= form.submit "Registrar", :class => "btn btn-primary btn-sm w-25 py-2 rounded-pill mb-2" %>
+            <%= link_to "Volver", contacts_path, :class => "btn btn-info w-25 py-2 rounded-pill mb-2" %>
+        </div>
+      </form>
+  </div>
+  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  <% end %>
+
+

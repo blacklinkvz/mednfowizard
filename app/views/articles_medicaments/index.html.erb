@@ -1,0 +1,20 @@
+<div class="container py-3">
+  <main>
+    <%= link_to "Agregar medicamento a un artículo", new_articles_medicament_path, :class => "btn btn-sm btn-primary rounded-pill px-2" %>
+     <table class="table table-primary mt-2">
+      <thead>
+        <tr>
+          <th scope="col">Medicamento</th>
+          <th scope="col">Compuesto</th>
+          <th scope="col">Unidad</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Articulo</th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+  <% @articles_medicaments.sort_by { |articles_medicaments| articles_medicaments.article.title }.each do |articles_medicament| %>
+    <%= render articles_medicament %>
+          <% end %>
+    </div>
+  </footer>

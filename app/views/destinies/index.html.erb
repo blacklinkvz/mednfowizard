@@ -1,0 +1,22 @@
+<div class="container py-3">
+  <main>
+    
+    <%= link_to "Nuevo destino", new_destiny_path, :class => "btn btn-sm btn-primary rounded-pill px-2" %>
+     <table class="table table-primary mt-2">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">País</th>
+          <th scope="col">Viaje</th>
+          <th scope="col">Fecha salida</th>
+          <th scope="col">Fecha regreso</th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+    <% @destinies.each do |destiny| %>
+        <%= render destiny %>
+          <% end %>
+    </div>
+  </footer>
+
