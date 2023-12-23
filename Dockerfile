@@ -18,7 +18,7 @@ FROM base as build
 
 # Install packages needed to build gems and node modules
 
-RUN apt-get update -qq && apt-get install -y build-essential curl git apt-utils libvips libpq-dev  libmariadb-dev-compat libmariadb-dev nodejs pkg-config python-is-python3 node-gyp
+RUN apt-get update -qq && apt-get install -y build-essential curl git apt-utils libvips libpq-dev libmariadb-dev-compat libmariadb-dev nodejs pkg-config python-is-python3 node-gyp
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=20.9.0

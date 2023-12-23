@@ -9,10 +9,11 @@
           method: 'POST',
           body: formData,
         })
-        .then(response => response.json())
+        //.then(response => response.json())
         .then(data => {
           if (confirm('¿Deseas agregar otro padecimiento?')) {
-            form.reset(); // Limpiar el formulario para agregar otro registro
+            window.location.reload();
+            form.reset('contactForm'); // Limpiar el formulario para agregar otro registro
           } else {
             window.location.href = '/articles_diseases/new'; // Reemplaza '/redirect_path' con la ruta a la que quieres redirigir
           }
