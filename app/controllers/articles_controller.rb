@@ -10,8 +10,8 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1 or /articles/1.json
   def show
-    @user = User.where(user_id: current_user.id)
-    @bloodtype = Bloodtype.where(user_id: current_user.id)
+    #@user = User.where(user_id: current_user.id)
+    #@bloodtype = Bloodtype.where(user_id: current_user.id)
     # Validar que la ruta contenga el valor de key
     unless params.require(:key) == @article.key
       render json: { error: "Acceso no autorizado" }, status: 401

@@ -4,14 +4,14 @@
       event.preventDefault();
       const formData = new FormData(form);
 
-      if (confirm('¿Deseas agregar otro registro?')) {
+      if (confirm('¿Deseas agregar otro destino?')) {
         fetch(form.action, {
           method: 'POST',
           body: formData,
         })
         .then(response => response.json())
         .then(data => {
-          if (confirm('¿Deseas agregar otro registro?')) {
+          if (confirm('¿Deseas agregar otro destino?')) {
             form.reset(); // Limpiar el formulario para agregar otro registro
           } else {
             window.location.href = '/destinies/new'; // Reemplaza '/redirect_path' con la ruta a la que quieres redirigir

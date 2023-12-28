@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :articles
   resources :contacts
   resources :destinies
-
   devise_for :users, controllers:{ registrations: 'user/registrations'}
 
   root to: "main#home"

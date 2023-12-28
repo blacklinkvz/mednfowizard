@@ -35,7 +35,7 @@ class ArticlesDiseasesController < ApplicationController
 
     respond_to do |format|
       if @articles_disease.save
-        format.html { redirect_to articles_diseases_path, notice: "Articles disease was successfully created." }
+        format.html { redirect_to articles_diseases_path, notice: "Padecimiento agregado con exito." }
         format.json { render :show, status: :created, location: @articles_disease }
       else
         format.html { render :new, status: :unprocessable_entity }
